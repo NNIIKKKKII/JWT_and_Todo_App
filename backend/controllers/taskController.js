@@ -16,7 +16,7 @@ export const createTask = async (req, res, next) => {
 
 export const getTasks = async (req, res, next) => {
     try {
-
+        console.log("User:", req.user);
         const { status, priority, sort = "dueDate", page = 1, limit = 10, } = req.query;
 
         const query = {
@@ -70,13 +70,15 @@ export const getTasksById = async (req, res, next) => {
 
 export const updateTask = async (req, res, next) => {
     try {
-        const res = Task.findOneAndUpdate({ _id: req.params.id, createdBy: req.user._id, isDeleted: false }, req.body, { new: true })
+        console.log("Update body:", req.body)
+        console.log("Task ID:", req.params.id)
+        const result = await Task.findOneAndUpdate({ _id: req.params.id, createdBy: req.user._id, isDeleted: false }, req.body, { new: true })
 
 
-        if (!res) {
+        if (!result) {
             return res.status(404).json({ message: "Task Not Found" })
         }
-        res.json(res);
+        res.json(result);
     } catch (err) {
         next(err)
     }
@@ -86,12 +88,12 @@ export const updateTask = async (req, res, next) => {
 
 
 
-export const DeleteTask = async (req, res, next) => {
+export const deleteTask = async (req, res, next) => {
     try {
         const task = await Task.findByIdAndUpdate(
-            { _id: req.params.id, created_By: req.user._id },
-            { isDeleted: true },
-            { new: true })
+            { _id: req.params.id, created_By: req.user._id }, //This is query
+            { isDeleted: true }, // This is update  
+            { new: true }) //this is optional
 
 
         if (!task) {

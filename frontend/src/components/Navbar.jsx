@@ -5,7 +5,7 @@ const Navbar = () => {
 
     const logOut = () => {
         localStorage.removeItem("token")
-        windows.location.href = "/login"
+        window.location.href = "/login"
     }
 
     return (
@@ -20,3 +20,5 @@ const Navbar = () => {
         </nav>
     )
 }
+
+export default Navbar;
