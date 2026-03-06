@@ -15,7 +15,7 @@ const Register = () => {
 
 
     const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value })
+        setForm({ ...form, [e.target.name]: e.target.value }) //This form operator make ssure the data entered like passowrd is saved while the user uodates the name and email
 
     }
 

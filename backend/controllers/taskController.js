@@ -72,7 +72,10 @@ export const updateTask = async (req, res, next) => {
     try {
         console.log("Update body:", req.body)
         console.log("Task ID:", req.params.id)
-        const result = await Task.findOneAndUpdate({ _id: req.params.id, createdBy: req.user._id, isDeleted: false }, req.body, { new: true })
+        console.log("User ID: ", req.user._id)
+        const result = await Task.findOneAndUpdate({ _id: req.params.id, createdBy: req.user._id, isDeleted: false }, //This is query
+            req.body, //This is update data
+            { new: true }) // this is option that says return updated value
 
 
         if (!result) {

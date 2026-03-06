@@ -11,16 +11,16 @@ const generateToken = (id) => {
 export const registerUser = async (req, res) => {
     const { name, email, password } = req.body;
 
-
+    //Validating the data
     if (!name || !email || !password) {
         return res.status(400).json({ message: "Requires all Fields !" })
     }
 
 
-    let userExists;
 
 
-    userExists = await User.findOne({ email })
+
+    const userExists = await User.findOne({ email })
 
 
     // console.log("Could not find user")
