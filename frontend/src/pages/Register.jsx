@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { registerUser } from "../api/userApi"
 
-
+import { Link } from "react-router-dom"
 
 
 const Register = () => {
@@ -74,6 +74,14 @@ const Register = () => {
                 >
                     Register
                 </button>
+
+                <p className="text-center text-sm text-gray-600">
+                    Already have an account?{" "}
+                    <Link to="/login" className="text-blue-500 hover:underline">
+                        Login
+                    </Link>
+                </p>
+
 
             </form>
 
